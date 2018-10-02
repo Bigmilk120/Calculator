@@ -42,9 +42,9 @@ app.controller('MainController', ['$scope', function($scope) {
 		{id:3,
 		value:"Back"},
 	];
-	$i=0;
 	$scope.screen=" ";
-	$scope.saved=[];
+	$saved_items=0;
+	$s0=$s1=$s2=$s3=" ";
 	$scope.change=function(i){
 		$scope.screen+=$scope.numbers[i].value.toString();
 	};
@@ -63,9 +63,32 @@ app.controller('MainController', ['$scope', function($scope) {
 		}else if(i==1){
 			$scope.screen=" ";
 		}else if(i==2){
+			if($saved_items==0){
+				$s0=$scope.screen.toString();
+				$saved_items++;
+			} else if($saved_items==1){
+				$s1=$scope.screen.toString();
+				$saved_items++;
+			} else if($saved_items==2){
+				$s2=$scope.screen.toString();
+				$saved_items++;
+			} else if($saved_items==3){
+				$s3=$scope.screen.toString();
+				$saved_items++;
+			} else{
+				
+			}
+			$scope.saved=[
+			{id:0,
+			value:$s0},
+			{id:1,
+			value:$s1},
+			{id:2,
+			value:$s2},
+			{id:3,
+			value:$s3}
 			
-			
-			
+			];
 		}else{
 			$len=$scope.screen.length;
 			$scope.screen=$scope.screen.slice(0,$len-1);
