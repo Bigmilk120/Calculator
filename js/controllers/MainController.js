@@ -21,6 +21,12 @@ app.controller('MainController', ['$scope', function($scope) {
 		id:8},
 		{value:"9",
 		id:9},
+		{value:"(",
+		id:10},
+		{value:")",
+		id:11},
+		{value:".",
+		id:12},
 	];
 	$scope.chars=[
 		{value:"+",
@@ -75,8 +81,6 @@ app.controller('MainController', ['$scope', function($scope) {
 			} else if($saved_items==3){
 				$s3=$scope.screen.toString();
 				$saved_items++;
-			} else{
-				
 			}
 			$scope.saved=[
 			{id:0,
@@ -87,7 +91,6 @@ app.controller('MainController', ['$scope', function($scope) {
 			value:$s2},
 			{id:3,
 			value:$s3}
-			
 			];
 		}else{
 			$len=$scope.screen.length;

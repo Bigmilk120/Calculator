@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 </head>
 <body ng-app="myApp">
 	<div class="main" ng-controller="MainController">
 		<h1>{{title}}</h1>
+		
+		<div class="view">&nbsp;<span>{{screen}}&nbsp;</span></div>
+		
+		
 		<div class="left">
 			<div class="nums">
 				<div ng-repeat="number in numbers" class="btn_value">
@@ -37,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<span>{{screen}}</span>
+		
 	</div>
 </body>
 
