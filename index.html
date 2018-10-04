@@ -17,9 +17,19 @@
 		
 		
 		<div class="left">
-			<div class="nums">
+			<div class="nums" ng-show="decimal">
 				<div ng-repeat="number in numbers" class="btn_value">
 					<button ng-click="change(number.id)">{{number.value}}</button>
+				</div>
+			</div>
+			<div class="nums" ng-show="hexagonal">
+				<div ng-repeat="number in hex" class="btn_value">
+					<button ng-click="change_hex(number.id)">{{number.value}}</button>
+				</div>
+			</div>
+			<div class="nums" ng-show="binary">
+				<div ng-repeat="number in bin" class="btn_value">
+					<button ng-click="change_bin(number.id)">{{number.value}}</button>
 				</div>
 			</div>
 		</div>
@@ -45,7 +55,14 @@
 			</div>
 		</div>
 		
-	</div>
+		<div class="choice">
+			<input class="sys" type="button" ng-click="isShowHide('decimal')" value="Decimal"> 
+			<input class="sys" type="button" ng-click="isShowHide('hexagonal')" value="Hexagonal">
+			<input class="sys" type="button" ng-click="isShowHide('binary')" value="Binary">
+		</div>
+
+
+
 </body>
 
 

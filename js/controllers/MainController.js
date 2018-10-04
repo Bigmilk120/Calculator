@@ -28,6 +28,48 @@ app.controller('MainController', ['$scope', function($scope) {
 		{value:".",
 		id:12},
 	];
+	$scope.hex=[
+		{value:"0",
+		id:0},
+		{value:"1",
+		id:1},
+		{value:"2",
+		id:2},
+		{value:"3",
+		id:3},
+		{value:"4",
+		id:4},
+		{value:"5",
+		id:5},
+		{value:"6",
+		id:6},
+		{value:"7",
+		id:7},
+		{value:"8",
+		id:8},
+		{value:"9",
+		id:9},
+		{value:"A",
+		id:10},
+		{value:"B",
+		id:11},
+		{value:"C",
+		id:12},
+		{value:"D",
+		id:13},
+		{value:"E",
+		id:14},
+		{value:"F",
+		id:15},
+	
+	];
+	$scope.bin=[
+		{value:"0",
+		id:0},
+		{value:"1",
+		id:1}
+	];
+	
 	$scope.chars=[
 		{value:"+",
 		id:0},
@@ -54,6 +96,12 @@ app.controller('MainController', ['$scope', function($scope) {
 	$scope.change=function(i){
 		$scope.screen+=$scope.numbers[i].value.toString();
 	};
+	$scope.change_hex=function(i){
+		$scope.screen+=$scope.hex[i].value.toString();
+	};
+	$scope.change_bin=function(i){
+		$scope.screen+=$scope.bin[i].value.toString();
+	};
 	
 	$scope.change_char=function(i){
 		$scope.screen+=$scope.chars[i].value.toString();
@@ -65,7 +113,11 @@ app.controller('MainController', ['$scope', function($scope) {
 	
 	$scope.operation=function(i){
 		if(i==0){
-			$scope.screen=eval($scope.screen);
+			if($scope.decimal==true)
+				$scope.screen=eval($scope.screen);
+			else if($scope.hexagonal==true){
+				
+			}
 		}else if(i==1){
 			$scope.screen=" ";
 		}else if(i==2){
@@ -97,4 +149,27 @@ app.controller('MainController', ['$scope', function($scope) {
 			$scope.screen=$scope.screen.slice(0,$len-1);
 		}
 	};
+	
+	
+	$scope.decimal = true;
+	$scope.hexagonal = false;
+	$scope.binary=false;
+	$scope.isShowHide = function (param) {
+	if (param == "decimal") {
+		$scope.decimal = true;
+		$scope.hexagonal = false;
+		$scope.binary=false;
+	}
+	else if (param == "hexagonal") {
+		$scope.decimal = false;
+		$scope.hexagonal = true;
+		$scope.binary=false;
+	}
+	else if (param=="binary") {
+		$scope.decimal = false;
+		$scope.hexagonal = false;
+		$scope.binary=true;
+	}
+	}
+	
 }]); 

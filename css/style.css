@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
-html, body { height: 100%; width: 100%; margin: 0; font-family: 'Dancing Script', cursive; overflow:hidden;}
+html, body { height: 100%; width: 100%; margin: 0; font-family: 'Dancing Script', cursive;overflow:hidden;}
  
 .main{
 	float:left;
@@ -32,19 +32,26 @@ h1{
 	float:left;
 	margin-left:15%;
 	width:30%;
-	height:60%;
+	height:40%;
 }
 	
 .middle{
 	float:left;
 	width:20%;
-	height:60%;
+	height:40%;
 }
 .right{
 	float:left;
 	width:15%;
-	height:60%;
+	height:40%;
 	margin-left:5%;
+}
+.choice{
+	float:left;
+	width:70%;
+	height:10%;
+	margin-left:15%;
+
 }
 .btn_value{
 	float:left;
@@ -70,3 +77,10 @@ button{
 	border:1px solid black;
 	border-radius:5px;
 }
+
+.sys{
+	width:30%;
+}
+
+
+
