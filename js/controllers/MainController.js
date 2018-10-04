@@ -102,9 +102,24 @@ app.controller('MainController', ['$scope', function($scope) {
 	$scope.change_bin=function(i){
 		$scope.screen+=$scope.bin[i].value.toString();
 	};
-	
+	$nums=[];
+	$opers=[];
+	$buffor=0;
+	$count=0;
 	$scope.change_char=function(i){
-		$scope.screen+=$scope.chars[i].value.toString();
+		if($scope.hexagonal==true){
+			$nums[$count]=$scope.screen;
+			$buffor+=$nums[$count].length+1;
+			
+		}
+		//$scope.screen+=$scope.chars[i].value.toString();
+		$opers[$count]=$scope.chars[i].value;
+		$scope.screen=$nums[$count];
+		
+		$scope.screen+=" "+$buffor;
+		$scope.screen+=" "+$count;
+		$scope.screen+=" "+$opers[$count];
+		$count++;
 	};
 	
 	$scope.save_use=function(i){
@@ -116,7 +131,10 @@ app.controller('MainController', ['$scope', function($scope) {
 			if($scope.decimal==true)
 				$scope.screen=eval($scope.screen);
 			else if($scope.hexagonal==true){
-				
+				$hex_num=String(parseInt($scope.screen, 16));
+				$scope.screen=eval($hex_num);
+			}else if($scope.binary==true){
+				$scope.screen="It's still not working";
 			}
 		}else if(i==1){
 			$scope.screen=" ";
@@ -135,14 +153,14 @@ app.controller('MainController', ['$scope', function($scope) {
 				$saved_items++;
 			}
 			$scope.saved=[
-			{id:0,
-			value:$s0},
-			{id:1,
-			value:$s1},
-			{id:2,
-			value:$s2},
-			{id:3,
-			value:$s3}
+				{id:0,
+				value:$s0},
+				{id:1,
+				value:$s1},
+				{id:2,
+				value:$s2},
+				{id:3,
+				value:$s3}
 			];
 		}else{
 			$len=$scope.screen.length;
