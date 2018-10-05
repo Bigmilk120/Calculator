@@ -103,23 +103,26 @@ app.controller('MainController', ['$scope', function($scope) {
 		$scope.screen+=$scope.bin[i].value.toString();
 	};
 	$nums=[];
+	$formula="";
 	$opers=[];
 	$buffor=0;
 	$count=0;
+	$czy=0;
 	$scope.change_char=function(i){
 		if($scope.hexagonal==true){
-			$nums[$count]=$scope.screen;
+			$nums[$count]=$scope.screen.slice($buffor+1,$scope.screen.length);
 			$buffor+=$nums[$count].length+1;
-			
+			$opers[$count]=$scope.chars[i].value;
+			$count++;
 		}
-		//$scope.screen+=$scope.chars[i].value.toString();
-		$opers[$count]=$scope.chars[i].value;
-		$scope.screen=$nums[$count];
+		if($scope.binary==true){
+			$nums[$count]=$scope.screen.slice($buffor+1,$scope.screen.length);
+			$buffor+=$nums[$count].length+1;
+			$opers[$count]=$scope.chars[i].value;
+			$count++;
+		}
+		$scope.screen+=$scope.chars[i].value.toString();
 		
-		$scope.screen+=" "+$buffor;
-		$scope.screen+=" "+$count;
-		$scope.screen+=" "+$opers[$count];
-		$count++;
 	};
 	
 	$scope.save_use=function(i){
@@ -131,13 +134,47 @@ app.controller('MainController', ['$scope', function($scope) {
 			if($scope.decimal==true)
 				$scope.screen=eval($scope.screen);
 			else if($scope.hexagonal==true){
-				$hex_num=String(parseInt($scope.screen, 16));
-				$scope.screen=eval($hex_num);
+				$nums[$count]=$scope.screen.slice($buffor+1,$scope.screen.length);
+				for(var i=0;i<$count;i++){
+					$nums[i]=parseInt($nums[i],16);
+					$formula+=$nums[i].toString()+$opers[i].toString();
+				}
+				$nums[$count]=parseInt($nums[$count],16);
+				$formula+=$nums[$count].toString();
+				$formula=eval($formula);
+				
+				$scope.screen=" "+$formula.toString(16);
+				$nums=[];				
+				$formula="";
+
+				$opers=[];
+				$buffor=0;
+				$count=0;
 			}else if($scope.binary==true){
-				$scope.screen="It's still not working";
+				$nums[$count]=$scope.screen.slice($buffor+1,$scope.screen.length);
+				for(var i=0;i<$count;i++){
+					$nums[i]=parseInt($nums[i],2);
+					$formula+=$nums[i].toString()+$opers[i].toString();
+				}
+				$nums[$count]=parseInt($nums[$count],2);
+				$formula+=$nums[$count].toString();
+				$formula=eval($formula);
+				
+				$scope.screen=" "+$formula.toString(2);
+				$nums=[];				
+				$formula="";
+
+				$opers=[];
+				$buffor=0;
+				$count=0;
 			}
 		}else if(i==1){
 			$scope.screen=" ";
+			$formula="";
+			$nums=[];
+			$opers=[];
+			$buffor=0;
+			$count=0;
 		}else if(i==2){
 			if($saved_items==0){
 				$s0=$scope.screen.toString();
@@ -163,6 +200,14 @@ app.controller('MainController', ['$scope', function($scope) {
 				value:$s3}
 			];
 		}else{
+			if($scope.screen==0){
+				$formula="";
+				$nums=[];
+				$opers=[];
+				$buffor=0;
+				$count=0;
+			}
+				
 			$len=$scope.screen.length;
 			$scope.screen=$scope.screen.slice(0,$len-1);
 		}
